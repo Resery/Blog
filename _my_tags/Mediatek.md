@@ -1,0 +1,4 @@
+---
+slug: Mediatek
+name: Mediatek
+---
