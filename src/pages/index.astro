@@ -11,19 +11,13 @@ const posts = (await getCollection('blog')).filter(({ data }) => data.lang === '
 ---
 
 <BaseLayout description={siteConfig.description} locale="en" alternateUrl="/Blog/zh/" showHeader={false} wide>
-    <div class="home-grid">
-        <div class="home-profile">
-            <Profile locale="en" />
-        </div>
-        <section class="home-writing" aria-labelledby="latest-writing">
-            <div class="section-heading">
-                <p>Journal</p>
-                <h2 id="latest-writing">Latest writing</h2>
-            </div>
+    <Profile locale="en">
+        <section class="academic-section home-writing" aria-labelledby="latest-writing">
+            <h2 id="latest-writing">Latest Writing</h2>
             <div class="post-list">
                 {posts.map((post) => <PostPreview post={post} locale="en" headingLevel="h3" />)}
             </div>
             <Button href="/Blog/blog/">All posts</Button>
         </section>
-    </div>
+    </Profile>
 </BaseLayout>

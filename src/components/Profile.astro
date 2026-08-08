@@ -3,64 +3,72 @@ type Props = { locale?: 'en' | 'zh' };
 const { locale = 'en' } = Astro.props;
 const zh = locale === 'zh';
 const cves = [
-    {
-        year: '2026',
-        items: ['CVE-2026-20424', 'CVE-2026-20425', 'CVE-2026-20426', 'CVE-2026-20427', 'CVE-2026-20428', 'CVE-2026-20429', 'CVE-2026-20447', 'CVE-2026-20448', 'CVE-2026-20521 (AI)']
-    },
-    {
-        year: '2024',
-        items: ['CVE-2024-20013', 'CVE-2024-20083', 'CVE-2024-20088', 'CVE-2024-20090', 'CVE-2024-20091', 'CVE-2024-20092', 'CVE-2024-20093', 'CVE-2024-20095', 'CVE-2024-20096', 'CVE-2024-20097', 'CVE-2024-20107', 'CVE-2024-20116', 'CVE-2024-20136', 'CVE-2024-20105']
-    },
-    {
-        year: '2023',
-        items: ['CVE-2023-20634', 'CVE-2023-20635', 'CVE-2023-20708', 'CVE-2023-20711', 'CVE-2023-20755', 'CVE-2023-20757', 'CVE-2023-20758', 'CVE-2023-20759', 'CVE-2023-20780', 'CVE-2023-20823', 'CVE-2023-20833', 'CVE-2023-32818', 'CVE-2023-32819', 'CVE-2023-32821', 'CVE-2023-32872', 'CVE-2023-32873', 'CVE-2023-32875', 'CVE-2023-32876']
-    }
+    { year: '2026', items: ['CVE-2026-20424', '20425', '20426', '20427', '20428', '20429', '20447', '20448', '20521 (AI)'] },
+    { year: '2024', items: ['CVE-2024-20013', '20083', '20088', '20090', '20091', '20092', '20093', '20095', '20096', '20097', '20107', '20116', '20136', '20105'] },
+    { year: '2023', items: ['CVE-2023-20634', '20635', '20708', '20711', '20755', '20757', '20758', '20759', '20780', '20823', '20833', '32818', '32819', '32821', '32872', '32873', '32875', '32876'] }
 ];
 ---
 
-<section class="profile-card" aria-labelledby="profile-name">
-    <img
-        class="profile-avatar"
-        src="https://avatars.githubusercontent.com/u/50428593?v=4"
-        alt="Resery"
-        width="144"
-        height="144"
-        loading="eager"
-    />
-    <div class="profile-copy">
-        <p class="profile-kicker">{zh ? '个人简介' : 'Profile'}</p>
-        <h1 id="profile-name">Resery</h1>
+<div class="academic-layout">
+    <aside class="profile-sidebar">
+        <img
+            class="profile-avatar"
+            src="https://avatars.githubusercontent.com/u/50428593?v=4"
+            alt="Resery"
+            width="180"
+            height="180"
+            loading="eager"
+        />
+        <h1>Resery</h1>
         <p class="profile-role">Android &amp; TEE Security Engineer</p>
         <p class="profile-bio">
             {zh
                 ? '专注于系统级安全、漏洞研究与可信执行环境。'
-                : 'Focusing on system-level security, vulnerability research, and trusted execution environments.'}
+                : 'System-level security, vulnerability research, and trusted execution environments.'}
         </p>
-        <div class="profile-links" aria-label={zh ? '个人链接' : 'Profile links'}>
-            <a href="https://github.com/Resery" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a href="https://x.com/Resery4" target="_blank" rel="noopener noreferrer">X ↗</a>
-            <a href="mailto:resery.sec@gmail.com">Email</a>
-        </div>
-    </div>
-</section>
+        <ul class="profile-links" aria-label={zh ? '个人链接' : 'Profile links'}>
+            <li><a href="mailto:resery.sec@gmail.com">Email</a></li>
+            <li><a href="https://github.com/Resery" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+            <li><a href="https://x.com/Resery4" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></li>
+        </ul>
+    </aside>
 
-<section class="profile-note vulnerability-section" aria-labelledby="vulnerability-title">
-    <p class="profile-note-label">{zh ? '漏洞研究 · MediaTek' : 'Vulnerability research · MediaTek'}</p>
-    <h2 id="vulnerability-title">{zh ? '安全公告与 CVE' : 'Security advisories & CVEs'}</h2>
-    <div class="cve-groups">
-        {cves.map((group) => (
-            <div class="cve-group">
-                <h3>{group.year}</h3>
-                <p>{group.items.join(' · ')}</p>
+    <div class="academic-main">
+        <section class="academic-intro" aria-labelledby="about-title">
+            <h2 id="about-title">{zh ? '关于我' : 'About'}</h2>
+            <p>
+                {zh
+                    ? '我是一名 Android 与 TEE 安全工程师，研究方向包括系统级安全、漏洞挖掘、利用开发与可信执行环境。'
+                    : 'I am an Android and TEE security engineer working on system security, vulnerability discovery, exploit development, and trusted execution environments.'}
+            </p>
+        </section>
+
+        <section class="academic-section" aria-labelledby="talk-title">
+            <h2 id="talk-title">{zh ? '演讲' : 'Talks'}</h2>
+            <div class="timeline-entry">
+                <time>2026</time>
+                <div>
+                    <h3>Black Hat USA 2026</h3>
+                    <a href="https://blackhat.com/us-26/briefings/schedule/index.html#exploring-the-el2-attack-surface-from-vulnerability-to-full-system-compromise-51679" target="_blank" rel="noopener noreferrer">
+                        Exploring the EL2 Attack Surface: From Vulnerability to Full System Compromise ↗
+                    </a>
+                </div>
             </div>
-        ))}
-    </div>
-</section>
+        </section>
 
-<section class="profile-note" aria-labelledby="talk-title">
-    <p class="profile-note-label">{zh ? '演讲' : 'Selected talk'}</p>
-    <h2 id="talk-title">Black Hat USA 2026</h2>
-    <a href="https://blackhat.com/us-26/briefings/schedule/index.html#exploring-the-el2-attack-surface-from-vulnerability-to-full-system-compromise-51679" target="_blank" rel="noopener noreferrer">
-        Exploring the EL2 Attack Surface: From Vulnerability to Full System Compromise ↗
-    </a>
-</section>
+        <section class="academic-section" aria-labelledby="vulnerability-title">
+            <h2 id="vulnerability-title">{zh ? '漏洞研究' : 'Vulnerability Research'}</h2>
+            <p class="section-lead">MediaTek Security Advisories &amp; CVEs</p>
+            <div class="cve-groups">
+                {cves.map((group) => (
+                    <div class="timeline-entry cve-group">
+                        <time>{group.year}</time>
+                        <p>{group.items.join(' · ')}</p>
+                    </div>
+                ))}
+            </div>
+        </section>
+
+        <slot />
+    </div>
+</div>

@@ -24,179 +24,194 @@ html {
     scroll-behavior: smooth;
 }
 
-.home-grid {
-    display: block;
+.academic-layout {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: clamp(3rem, 7vw, 6rem);
+    align-items: start;
     padding-bottom: 5rem;
 }
 
-.home-profile {
-    margin-bottom: clamp(4rem, 9vw, 7rem);
-}
-
-.profile-card {
-    display: grid;
-    grid-template-columns: 9rem minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
+.profile-sidebar {
+    position: sticky;
+    top: 2rem;
 }
 
 .profile-avatar {
-    width: 9rem;
-    height: 9rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.profile-kicker,
-.profile-note-label,
-.section-heading p {
-    margin-bottom: 0.55rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    opacity: 0.55;
-}
-
-.profile-copy h1 {
+.profile-sidebar h1 {
+    margin-top: 1.25rem;
     font-family: var(--font-serif);
-    font-size: clamp(2.4rem, 5vw, 3.7rem);
-    font-weight: 500;
-    line-height: 0.95;
-}
-
-.profile-role {
-    margin-top: 0.65rem;
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
-    font-style: italic;
-}
-
-.profile-bio {
-    margin-top: 1rem;
-    max-width: 25rem;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    opacity: 0.76;
-}
-
-.profile-copy {
-    max-width: 38rem;
-}
-
-.profile-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem 1.1rem;
-    margin-top: 1.35rem;
-    font-family: var(--font-serif);
-    font-size: 0.95rem;
-}
-
-.profile-links a:hover,
-.profile-note a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.25em;
-}
-
-.profile-note {
-    margin-top: 2.5rem;
-    border-top: 1px dashed var(--border-main);
-    padding-top: 1.25rem;
-}
-
-.vulnerability-section {
-    margin-top: 2rem;
-}
-
-.profile-note h2 {
-    margin-bottom: 0.45rem;
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
-    font-weight: 500;
-}
-
-.cve-groups {
-    display: grid;
-    gap: 1.1rem;
-    margin-top: 1.2rem;
-}
-
-.cve-group {
-    display: grid;
-    grid-template-columns: 3.5rem minmax(0, 1fr);
-    gap: 1rem;
-    align-items: baseline;
-}
-
-.cve-group h3 {
-    font-family: var(--font-serif);
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-.cve-group p {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-size: 0.72rem;
-    line-height: 1.75;
-    opacity: 0.68;
-}
-
-.profile-note a {
-    display: inline-block;
-    max-width: 27rem;
-    font-size: 0.82rem;
-    line-height: 1.55;
-    opacity: 0.7;
-}
-
-.section-heading {
-    margin-bottom: 2.4rem;
-}
-
-.home-writing {
-    max-width: 48rem;
-}
-
-.section-heading h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: 1.8rem;
     font-weight: 500;
     line-height: 1;
 }
 
+.profile-role {
+    margin-top: 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.profile-bio {
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    opacity: 0.68;
+}
+
+.profile-links {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 1.2rem;
+    font-size: 0.82rem;
+}
+
+.profile-links a:hover,
+.academic-main a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22em;
+}
+
+.academic-main {
+    min-width: 0;
+    max-width: 46rem;
+}
+
+.academic-intro h2,
+.academic-section > h2 {
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border-main);
+    padding-bottom: 0.55rem;
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.academic-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.academic-section {
+    margin-top: 3.5rem;
+}
+
+.section-lead {
+    margin-bottom: 1.25rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    opacity: 0.72;
+}
+
+.timeline-entry {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+}
+
+.timeline-entry time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.78rem;
+    opacity: 0.55;
+}
+
+.timeline-entry h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.timeline-entry a {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    opacity: 0.75;
+}
+
+.cve-groups {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.cve-group p {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.74rem;
+    line-height: 1.75;
+    opacity: 0.68;
+}
+
 .post-list {
     display: grid;
-    gap: 0;
     margin-bottom: 2rem;
-    border-top: 1px dashed var(--border-main);
 }
 
 .post-list > a {
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
     border-bottom: 1px dashed var(--border-main);
 }
 
+.post-list > a:first-child {
+    padding-top: 0;
+}
+
 @media (max-width: 760px) {
-    .profile-card {
-        grid-template-columns: 5.5rem minmax(0, 1fr);
-        align-items: start;
+    .academic-layout {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    .profile-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 6.5rem minmax(0, 1fr);
+        column-gap: 1.5rem;
     }
 
     .profile-avatar {
-        width: 5.5rem;
-        height: 5.5rem;
+        grid-row: 1 / span 4;
+        width: 6.5rem;
+        height: 6.5rem;
     }
 
-    .cve-group {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
+    .profile-sidebar h1 {
+        margin-top: 0;
+    }
+
+    .profile-links {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem 1.1rem;
     }
 }
 
 @media (max-width: 420px) {
-    .profile-card {
+    .profile-sidebar {
         grid-template-columns: 1fr;
+    }
+
+    .profile-avatar,
+    .profile-links {
+        grid-row: auto;
+        grid-column: auto;
+    }
+
+    .profile-sidebar h1 {
+        margin-top: 1rem;
+    }
+
+    .timeline-entry {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
     }
 }
 

@@ -10,19 +10,13 @@ const posts = (await getCollection('blog')).filter(({ data }) => data.lang === '
 ---
 
 <BaseLayout title="首页" description="Resery：Android 与 TEE 安全研究，以及最近文章。" locale="zh" alternateUrl="/Blog/" showHeader={false} wide>
-    <div class="home-grid">
-        <div class="home-profile">
-            <Profile locale="zh" />
-        </div>
-        <section class="home-writing" aria-labelledby="latest-writing">
-            <div class="section-heading">
-                <p>文章</p>
-                <h2 id="latest-writing">最近文章</h2>
-            </div>
+    <Profile locale="zh">
+        <section class="academic-section home-writing" aria-labelledby="latest-writing">
+            <h2 id="latest-writing">最近文章</h2>
             <div class="post-list">
                 {posts.map((post) => <PostPreview post={post} locale="zh" headingLevel="h3" />)}
             </div>
             <Button href="/Blog/zh/blog/">全部文章</Button>
         </section>
-    </div>
+    </Profile>
 </BaseLayout>
