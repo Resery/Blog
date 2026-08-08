@@ -1,0 +1,39 @@
+---
+type Props = { locale?: 'en' | 'zh' };
+const { locale = 'en' } = Astro.props;
+const zh = locale === 'zh';
+---
+
+<section class="profile-card" aria-labelledby="profile-name">
+    <img
+        class="profile-avatar"
+        src="https://avatars.githubusercontent.com/u/50428593?v=4"
+        alt="Resery"
+        width="144"
+        height="144"
+        loading="eager"
+    />
+    <div class="profile-copy">
+        <p class="profile-kicker">{zh ? '个人简介' : 'Profile'}</p>
+        <h1 id="profile-name">Resery</h1>
+        <p class="profile-role">Android &amp; TEE Security Engineer</p>
+        <p class="profile-bio">
+            {zh
+                ? '专注于系统级安全、漏洞研究与可信执行环境。'
+                : 'Focusing on system-level security, vulnerability research, and trusted execution environments.'}
+        </p>
+        <div class="profile-links" aria-label={zh ? '个人链接' : 'Profile links'}>
+            <a href="https://github.com/Resery" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://x.com/Resery4" target="_blank" rel="noopener noreferrer">X ↗</a>
+            <a href="mailto:resery.sec@gmail.com">Email</a>
+        </div>
+    </div>
+</section>
+
+<section class="profile-note" aria-labelledby="talk-title">
+    <p class="profile-note-label">{zh ? '演讲' : 'Selected talk'}</p>
+    <h2 id="talk-title">Black Hat USA 2026</h2>
+    <a href="https://blackhat.com/us-26/briefings/schedule/index.html#exploring-the-el2-attack-surface-from-vulnerability-to-full-system-compromise-51679" target="_blank" rel="noopener noreferrer">
+        Exploring the EL2 Attack Surface: From Vulnerability to Full System Compromise ↗
+    </a>
+</section>

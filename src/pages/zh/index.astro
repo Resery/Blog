@@ -2,19 +2,27 @@
 import { getCollection } from 'astro:content';
 import Button from '../../components/Button.astro';
 import PostPreview from '../../components/PostPreview.astro';
+import Profile from '../../components/Profile.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sortItemsByDateDesc } from '../../utils/data-utils';
-const posts = (await getCollection('blog')).filter(({ data }) => data.lang === 'zh').sort(sortItemsByDateDesc).slice(0, 4);
+
+const posts = (await getCollection('blog')).filter(({ data }) => data.lang === 'zh').sort(sortItemsByDateDesc).slice(0, 5);
 ---
 
-<BaseLayout title="首页" description="Resery Blog：关于软件、想法与创造的笔记。" locale="zh" alternateUrl="/Blog/">
-    <section class="mb-16 sm:mb-24">
-        <h1 class="max-w-2xl font-serif text-4xl leading-tight font-medium sm:text-6xl sm:leading-tight">思考、创造，然后写下来。</h1>
-        <p class="mt-7 max-w-xl text-lg leading-relaxed">一个安静记录软件、想法，以及沿途所学的地方。</p>
-    </section>
-    <section class="mb-16 sm:mb-24">
-        <h2 class="mb-10 font-serif text-xl italic sm:mb-12 sm:text-2xl">最近文章</h2>
-        {posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="zh" headingLevel="h3" />)}
-        <Button href="/Blog/zh/blog/">查看全部文章</Button>
-    </section>
+<BaseLayout title="首页" description="Resery：Android 与 TEE 安全研究，以及最近文章。" locale="zh" alternateUrl="/Blog/" showHeader={false} wide>
+    <div class="home-grid">
+        <div class="home-profile">
+            <Profile locale="zh" />
+        </div>
+        <section class="home-writing" aria-labelledby="latest-writing">
+            <div class="section-heading">
+                <p>文章</p>
+                <h2 id="latest-writing">最近文章</h2>
+            </div>
+            <div class="post-list">
+                {posts.map((post) => <PostPreview post={post} locale="zh" headingLevel="h3" />)}
+            </div>
+            <Button href="/Blog/zh/blog/">全部文章</Button>
+        </section>
+    </div>
 </BaseLayout>

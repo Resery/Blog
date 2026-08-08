@@ -2,21 +2,28 @@
 import { getCollection } from 'astro:content';
 import Button from '../components/Button.astro';
 import PostPreview from '../components/PostPreview.astro';
+import Profile from '../components/Profile.astro';
 import siteConfig from '../data/site-config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sortItemsByDateDesc } from '../utils/data-utils';
 
-const posts = (await getCollection('blog')).filter(({ data }) => data.lang === 'en').sort(sortItemsByDateDesc).slice(0, 4);
+const posts = (await getCollection('blog')).filter(({ data }) => data.lang === 'en').sort(sortItemsByDateDesc).slice(0, 5);
 ---
 
-<BaseLayout description={siteConfig.description} locale="en" alternateUrl="/Blog/zh/">
-    <section class="mb-16 sm:mb-24">
-        <h1 class="max-w-2xl font-serif text-4xl leading-tight font-medium sm:text-6xl sm:leading-tight">Thinking, building, and writing.</h1>
-        <p class="mt-7 max-w-xl text-lg leading-relaxed">A quiet place for notes on software, ideas, and the things I learn along the way.</p>
-    </section>
-    <section class="mb-16 sm:mb-24">
-        <h2 class="mb-10 font-serif text-xl italic sm:mb-12 sm:text-2xl">Latest writing</h2>
-        {posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="en" headingLevel="h3" />)}
-        <Button href="/Blog/blog/">View all posts</Button>
-    </section>
+<BaseLayout description={siteConfig.description} locale="en" alternateUrl="/Blog/zh/" showHeader={false} wide>
+    <div class="home-grid">
+        <div class="home-profile">
+            <Profile locale="en" />
+        </div>
+        <section class="home-writing" aria-labelledby="latest-writing">
+            <div class="section-heading">
+                <p>Journal</p>
+                <h2 id="latest-writing">Latest writing</h2>
+            </div>
+            <div class="post-list">
+                {posts.map((post) => <PostPreview post={post} locale="en" headingLevel="h3" />)}
+            </div>
+            <Button href="/Blog/blog/">All posts</Button>
+        </section>
+    </div>
 </BaseLayout>
