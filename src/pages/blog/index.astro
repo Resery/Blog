@@ -7,6 +7,5 @@ const posts = (await getCollection('blog')).filter(({ data }) => data.lang === '
 ---
 
 <BaseLayout title="Blog" description="All writing from Resery Blog." showHeader={false} locale="en" alternateUrl="/Blog/zh/blog/">
-    <h1 class="mb-12 font-serif text-3xl leading-tight font-medium sm:mb-16 sm:text-5xl">Blog</h1>
-    {posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="en" />)}
+	{posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="en" />)}
 </BaseLayout>

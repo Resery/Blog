@@ -7,6 +7,5 @@ const posts = (await getCollection('blog')).filter(({ data }) => data.lang === '
 ---
 
 <BaseLayout title="文章" description="Resery Blog 的全部中文文章。" showHeader={false} locale="zh" alternateUrl="/Blog/blog/">
-    <h1 class="mb-12 font-serif text-3xl leading-tight font-medium sm:mb-16 sm:text-5xl">文章</h1>
-    {posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="zh" />)}
+	{posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="zh" />)}
 </BaseLayout>
