@@ -1,0 +1,12 @@
+---
+import { getCollection } from 'astro:content';
+import PostPreview from '../../../components/PostPreview.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { sortItemsByDateDesc } from '../../../utils/data-utils';
+const posts = (await getCollection('blog')).filter(({ data }) => data.lang === 'zh').sort(sortItemsByDateDesc);
+---
+
+<BaseLayout title="文章" description="Resery Blog 的全部中文文章。" showHeader={false} locale="zh" alternateUrl="/Blog/blog/">
+    <h1 class="mb-12 font-serif text-3xl leading-tight font-medium sm:mb-16 sm:text-5xl">文章</h1>
+    {posts.map((post) => <PostPreview post={post} class="mb-10 sm:mb-12" locale="zh" />)}
+</BaseLayout>

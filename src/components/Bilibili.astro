@@ -1,0 +1,9 @@
+---
+type Props = { bvid: string; title?: string };
+const { bvid, title = 'Bilibili video' } = Astro.props;
+const src = `https://player.bilibili.com/player.html?bvid=${encodeURIComponent(bvid)}&page=1&high_quality=1`;
+---
+
+<div class="not-prose my-8 aspect-video overflow-hidden bg-black">
+    <iframe class="h-full w-full" src={src} title={title} loading="lazy" allowfullscreen></iframe>
+</div>

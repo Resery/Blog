@@ -1,0 +1,23 @@
+---
+type Heading = { depth: number; slug: string; text: string };
+type Props = { headings: Heading[]; locale?: 'en' | 'zh'; mode?: 'mobile' | 'desktop' };
+const { headings, locale = 'en', mode = 'desktop' } = Astro.props;
+const items = headings.filter(({ depth }) => depth === 2 || depth === 3);
+---
+
+{items.length > 0 && (
+    <aside class="toc" aria-label={locale === 'zh' ? '文章目录' : 'Table of contents'}>
+        {mode === 'mobile' && <details class="toc-mobile">
+            <summary>{locale === 'zh' ? '目录' : 'On this page'}</summary>
+            <ol>
+                {items.map((heading) => <li class:list={{ 'toc-subitem': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+            </ol>
+        </details>}
+        {mode === 'desktop' && <nav class="toc-desktop">
+            <p>{locale === 'zh' ? '目录' : 'On this page'}</p>
+            <ol>
+                {items.map((heading) => <li class:list={{ 'toc-subitem': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+            </ol>
+        </nav>}
+    </aside>
+)}

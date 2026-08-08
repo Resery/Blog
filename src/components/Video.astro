@@ -1,0 +1,12 @@
+---
+type Props = { src: string; poster?: string; title?: string; caption?: string };
+const { src, poster, title = 'Video', caption } = Astro.props;
+---
+
+<figure class="not-prose my-8">
+    <video class="aspect-video w-full bg-black" controls preload="metadata" poster={poster} aria-label={title}>
+        <source src={src} />
+        Your browser does not support HTML video.
+    </video>
+    {caption && <figcaption class="mt-2 text-sm opacity-70">{caption}</figcaption>}
+</figure>

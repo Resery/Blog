@@ -17,10 +17,13 @@ const seoSchema = (image: ImageFunction) =>
     });
 
 const blog = defineCollection({
-    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+    loader: glob({ pattern: 'resery/**/*.{md,mdx}', base: './src/content/blog' }),
     schema: ({ image }) =>
         z.object({
             title: z.string(),
+            permalink: z.string(),
+            lang: z.enum(['en', 'zh']),
+            translationKey: z.string(),
             excerpt: z.string().optional(),
             publishDate: z.coerce.date(),
             updatedDate: z.coerce.date().optional(),

@@ -1,0 +1,34 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+
+export async function getStaticPaths() {
+    const all = await getCollection('blog');
+    return all.filter(({ data }) => data.lang === 'en').map((post) => {
+        const translation = all.find(({ data }) => data.lang === 'zh' && data.translationKey === post.data.translationKey);
+        return { params: { slug: post.data.permalink }, props: { post, translation } };
+    });
+}
+
+type Props = { post: CollectionEntry<'blog'>; translation?: CollectionEntry<'blog'> };
+const { post, translation } = Astro.props;
+const { title, publishDate, updatedDate, excerpt, seo } = post.data;
+const { Content, headings } = await render(post);
+const alternateUrl = translation ? `/Blog/zh/blog/${translation.data.permalink}/` : '/Blog/zh/';
+---
+
+<BaseLayout title={seo?.title ?? title} description={seo?.description ?? excerpt} pageType="article" showHeader={false} locale="en" alternateUrl={alternateUrl} wide>
+    <div class="article-shell">
+        <article class="min-w-0 mb-16 sm:mb-24">
+            <header class="mb-8">
+                <h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>
+                <div class="mt-4 text-sm"><FormattedDate date={publishDate} locale="en" />{updatedDate && <> · Updated <FormattedDate date={updatedDate} locale="en" /></>}</div>
+            </header>
+            <TableOfContents headings={headings} locale="en" mode="mobile" />
+            <div class="prose sm:prose-lg max-w-none"><Content /></div>
+        </article>
+        <TableOfContents headings={headings} locale="en" mode="desktop" />
+    </div>
+</BaseLayout>

@@ -1,12 +1,12 @@
 ---
-type Props = { date: Date };
+type Props = { date: Date; locale?: 'en' | 'zh' };
 
-const { date } = Astro.props;
+const { date, locale = 'en' } = Astro.props;
 ---
 
 <time datetime={date.toISOString()}>
     {
-        date.toLocaleDateString('en-us', {
+        date.toLocaleDateString(locale === 'zh' ? 'zh-CN' : 'en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'

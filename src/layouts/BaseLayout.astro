@@ -5,15 +5,16 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Nav from '../components/Nav.astro';
 
-export type Props = HeadProps & { showHeader?: boolean };
+export type Props = HeadProps & { showHeader?: boolean; locale?: 'en' | 'zh'; alternateUrl?: string; wide?: boolean };
 
-const { showHeader = true, ...head } = Astro.props;
+const { showHeader = true, locale = 'en', alternateUrl, wide = false, ...head } = Astro.props;
+const themeScript = `${import.meta.env.BASE_URL}theme-toggle.js`;
 ---
 
 <!doctype html>
-<html lang="en" class="wrap-break-words antialiased">
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'} class="wrap-break-words antialiased">
     <head>
-        <BaseHead {...head} />
+        <BaseHead {...head} locale={locale} alternateUrl={alternateUrl} />
         <script is:inline>
             try {
                 if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -22,16 +23,16 @@ const { showHeader = true, ...head } = Astro.props;
             } catch {}
         </script>
         <ClientRouter />
-        <script is:inline src="/theme-toggle.js"></script>
+        <script is:inline src={themeScript}></script>
     </head>
     <body class="bg-main text-main">
         <div class="flex min-h-screen flex-col px-4 md:px-8">
-            <Nav />
-            {showHeader && <Header />}
-            <main class="mx-auto w-full max-w-3xl grow">
+            <Nav locale={locale} alternateUrl={alternateUrl} />
+            {showHeader && <Header locale={locale} />}
+            <main class:list={['mx-auto w-full grow', wide ? 'max-w-5xl' : 'max-w-3xl']}>
                 <slot />
             </main>
-            <Footer />
+            <Footer locale={locale} />
         </div>
     </body>
 </html>

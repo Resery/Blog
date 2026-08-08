@@ -12,9 +12,11 @@ export type Props = {
     description?: string;
     image?: ImageInput | undefined;
     pageType?: 'website' | 'article';
+    locale?: 'en' | 'zh';
+    alternateUrl?: string;
 };
 
-const { description = '', pageType = 'website' } = Astro.props;
+const { description = '', pageType = 'website', locale = 'en', alternateUrl } = Astro.props;
 const title = [Astro.props.title, siteConfig.title].filter(Boolean).join(' | ');
 const image = Astro.props.image ?? siteConfig.image;
 let resolvedImage: { src: string; alt?: string } | undefined;
@@ -46,6 +48,7 @@ if (image?.src) {
  * Trailing slashes follow the user's Astro configuration.
  */
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const base = import.meta.env.BASE_URL;
 ---
 
 <!-- High Priority Global Metadata -->
@@ -59,16 +62,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <link rel="preload" as="font" type="font/woff2" href={newsreaderWoff2} crossorigin="anonymous" />
 
 <!-- Low Priority Global Metadata -->
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" href="/rss.xml" title="RSS" />
+<link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+<link rel="sitemap" href={`${base}sitemap-index.xml`} />
+<link rel="alternate" type="application/rss+xml" href={`${base}rss.xml`} title="RSS" />
 
 <!-- Page Metadata -->
 <link rel="canonical" href={canonicalURL} />
+{alternateUrl && <link rel="alternate" hreflang={locale === 'en' ? 'zh-CN' : 'en'} href={new URL(alternateUrl, Astro.site)} />}
+<link rel="alternate" hreflang={locale === 'en' ? 'en' : 'zh-CN'} href={canonicalURL} />
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={pageType} />
+<meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}

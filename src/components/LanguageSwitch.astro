@@ -1,0 +1,10 @@
+---
+type Props = { locale: 'en' | 'zh'; alternateUrl?: string };
+const { locale, alternateUrl } = Astro.props;
+const href = alternateUrl ?? (locale === 'en' ? '/Blog/zh/' : '/Blog/');
+const label = locale === 'en' ? '中文' : 'EN';
+---
+
+<a class="font-serif text-sm hover:underline hover:underline-offset-4" href={href} aria-label={locale === 'en' ? '切换到中文' : 'Switch to English'}>
+    {label}
+</a>

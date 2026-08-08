@@ -2,8 +2,15 @@
 import NavLink from './NavLink.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import siteConfig from '../data/site-config';
+import LanguageSwitch from './LanguageSwitch.astro';
 
-const navLinks = siteConfig.headerNavLinks ?? [];
+const { locale = 'en', alternateUrl } = Astro.props;
+const navLinks = locale === 'zh'
+    ? [
+          { text: '首页', href: '/Blog/zh/' },
+          { text: '文章', href: '/Blog/zh/blog/' }
+      ]
+    : (siteConfig.headerNavLinks ?? []).map((link) => ({ ...link, href: `/Blog${link.href}` }));
 ---
 
 <nav class="relative min-h-10 pt-4 pb-12 sm:min-h-14 sm:pb-24 md:pt-8" aria-label="Primary navigation">
@@ -36,7 +43,8 @@ const navLinks = siteConfig.headerNavLinks ?? [];
             </div>
         )
     }
-    <div class="absolute top-4 right-0 z-10 md:top-8">
+    <div class="absolute top-4 right-0 z-10 flex items-center gap-3 md:top-8">
+        <LanguageSwitch locale={locale} alternateUrl={alternateUrl} />
         <ThemeToggle />
     </div>
 </nav>

@@ -20,6 +20,86 @@ html.dark {
     --border-main: #f2f1ec;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+.article-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 48rem) 12rem;
+    gap: 4rem;
+    align-items: start;
+}
+
+.toc-desktop {
+    position: sticky;
+    top: 2rem;
+    padding-top: 0.25rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+}
+
+.toc-desktop p {
+    margin-bottom: 0.75rem;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.toc ol {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.toc a {
+    opacity: 0.68;
+}
+
+.toc a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.toc-subitem {
+    padding-left: 0.75rem;
+}
+
+.toc-mobile {
+    display: none;
+    margin-bottom: 2rem;
+    border-top: 1px dashed var(--border-main);
+    border-bottom: 1px dashed var(--border-main);
+    padding: 0.8rem 0;
+    font-size: 0.9rem;
+}
+
+.toc-mobile summary {
+    cursor: pointer;
+    font-family: var(--font-serif);
+    font-style: italic;
+}
+
+.toc-mobile ol {
+    margin-top: 0.8rem;
+}
+
+@media (max-width: 900px) {
+    .article-shell {
+        display: block;
+        max-width: 48rem;
+        margin-inline: auto;
+    }
+
+    .toc-desktop {
+        display: none;
+    }
+
+    .toc-mobile {
+        display: block;
+    }
+}
+
 /* Cyan */
 /*
 :root {
