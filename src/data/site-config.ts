@@ -15,18 +15,8 @@ const siteConfig: SiteConfig = {
             href: '/blog'
         }
     ],
-    footerNavLinks: [
-        {
-            text: 'GitHub',
-            href: 'https://github.com/Resery'
-        }
-    ],
-    socialLinks: [
-        {
-            text: 'GitHub',
-            href: 'https://github.com/Resery'
-        }
-    ],
+    footerNavLinks: [],
+    socialLinks: [],
     hero: {
         title: 'Thinking, building, and writing.',
         text: 'A quiet place for notes on software, ideas, and the things I learn along the way.',
