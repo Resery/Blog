@@ -10,14 +10,45 @@ const items = headings.filter(({ depth }) => depth === 2 || depth === 3);
         {mode === 'mobile' && <details class="toc-mobile">
             <summary>{locale === 'zh' ? '目录' : 'On this page'}</summary>
             <ol>
-                {items.map((heading) => <li class:list={{ 'toc-subitem': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+                {items.map((heading) => <li class:list={{ 'toc-subitem': heading.depth === 3 }}><a data-toc-link href={`#${heading.slug}`}>{heading.text}</a></li>)}
             </ol>
         </details>}
         {mode === 'desktop' && <nav class="toc-desktop">
             <p>{locale === 'zh' ? '目录' : 'On this page'}</p>
             <ol>
-                {items.map((heading) => <li class:list={{ 'toc-subitem': heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+                {items.map((heading) => <li class:list={{ 'toc-subitem': heading.depth === 3 }}><a data-toc-link href={`#${heading.slug}`}>{heading.text}</a></li>)}
             </ol>
         </nav>}
     </aside>
 )}
+
+<script>
+    function initializeTocTracking() {
+        const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+        const headingIds = [...new Set(links.map((link) => link.hash.slice(1)))];
+        const headings = headingIds.map((id) => document.getElementById(id)).filter((heading): heading is HTMLElement => Boolean(heading));
+
+        if (!links.length || !headings.length) return;
+
+        let ticking = false;
+        const updateCurrentHeading = () => {
+            const current = headings.reduce((active, heading) => (heading.getBoundingClientRect().top <= 150 ? heading : active), headings[0]);
+            links.forEach((link) => {
+                const isCurrent = link.hash === `#${current.id}`;
+                link.toggleAttribute('aria-current', isCurrent);
+                if (isCurrent) link.scrollIntoView({ block: 'nearest' });
+            });
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateCurrentHeading);
+                ticking = true;
+            }
+        }, { passive: true });
+        updateCurrentHeading();
+    }
+
+    document.addEventListener('astro:page-load', initializeTocTracking);
+</script>
