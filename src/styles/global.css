@@ -25,29 +25,26 @@ html {
 }
 
 .home-grid {
-    display: grid;
-    grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.35fr);
-    gap: clamp(3rem, 7vw, 6rem);
-    align-items: start;
+    display: block;
     padding-bottom: 5rem;
 }
 
 .home-profile {
-    position: sticky;
-    top: 2rem;
+    margin-bottom: clamp(4rem, 9vw, 7rem);
 }
 
 .profile-card {
     display: grid;
-    gap: 1.5rem;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
 }
 
 .profile-avatar {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 9rem;
+    height: 9rem;
     border-radius: 50%;
     object-fit: cover;
-    filter: grayscale(100%);
 }
 
 .profile-kicker,
@@ -83,6 +80,10 @@ html {
     opacity: 0.76;
 }
 
+.profile-copy {
+    max-width: 38rem;
+}
+
 .profile-links {
     display: flex;
     flex-wrap: wrap;
@@ -104,11 +105,41 @@ html {
     padding-top: 1.25rem;
 }
 
+.vulnerability-section {
+    margin-top: 2rem;
+}
+
 .profile-note h2 {
     margin-bottom: 0.45rem;
     font-family: var(--font-serif);
     font-size: 1.05rem;
     font-weight: 500;
+}
+
+.cve-groups {
+    display: grid;
+    gap: 1.1rem;
+    margin-top: 1.2rem;
+}
+
+.cve-group {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+}
+
+.cve-group h3 {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.cve-group p {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.72rem;
+    line-height: 1.75;
+    opacity: 0.68;
 }
 
 .profile-note a {
@@ -121,6 +152,10 @@ html {
 
 .section-heading {
     margin-bottom: 2.4rem;
+}
+
+.home-writing {
+    max-width: 48rem;
 }
 
 .section-heading h2 {
@@ -143,15 +178,6 @@ html {
 }
 
 @media (max-width: 760px) {
-    .home-grid {
-        grid-template-columns: 1fr;
-        gap: 4.5rem;
-    }
-
-    .home-profile {
-        position: static;
-    }
-
     .profile-card {
         grid-template-columns: 5.5rem minmax(0, 1fr);
         align-items: start;
@@ -160,6 +186,11 @@ html {
     .profile-avatar {
         width: 5.5rem;
         height: 5.5rem;
+    }
+
+    .cve-group {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
     }
 }
 
