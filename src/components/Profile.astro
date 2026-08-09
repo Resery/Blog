@@ -54,8 +54,7 @@ const cves = [
 
         <section class="academic-section" aria-labelledby="talk-title">
             <h2 id="talk-title">{zh ? '演讲' : 'Talks'}</h2>
-            <div class="timeline-entry">
-                <time>2026</time>
+            <div class="timeline-entry talk-entry">
                 <div>
                     <h3>Black Hat USA 2026</h3>
                     <a href="https://blackhat.com/us-26/briefings/schedule/index.html#exploring-the-el2-attack-surface-from-vulnerability-to-full-system-compromise-51679" target="_blank" rel="noopener noreferrer">
@@ -77,7 +76,7 @@ const cves = [
                                 <>
                                     {index > 0 && <span aria-hidden="true"> · </span>}
                                     <span class:list={['cve-item', { 'cve-item--assisted': item === '20521' }]}>
-                                        <span>{item}</span>
+                                        <span>CVE-{group.year}-{item}</span>
                                         {item === '20521' && (
                                             <span class="ai-assisted-label">AI-assisted</span>
                                         )}

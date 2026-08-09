@@ -150,6 +150,10 @@ html.dark .profile-links img {
     opacity: 0.75;
 }
 
+.talk-entry {
+    grid-template-columns: minmax(0, 1fr);
+}
+
 .cve-groups {
     display: grid;
     gap: 1.25rem;
@@ -164,10 +168,10 @@ html.dark .profile-links img {
 
 .cve-item--assisted {
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.38rem;
     white-space: nowrap;
-    vertical-align: -0.08em;
+    vertical-align: baseline;
 }
 
 .ai-assisted-label {
