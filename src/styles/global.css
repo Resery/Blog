@@ -156,10 +156,25 @@ html.dark .profile-links img {
 
 .cve-groups {
     display: grid;
-    gap: 1.25rem;
+    gap: 1.1rem;
+}
+
+.cve-group {
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: 0.7rem;
+    align-items: start;
+}
+
+.cve-group time {
+    padding-top: 0;
+    font-size: 0.74rem;
+    line-height: 1.75;
+    text-align: right;
 }
 
 .cve-group p {
+    border-left: 1px solid var(--border-main);
+    padding-left: 0.8rem;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.74rem;
     line-height: 1.75;
@@ -255,6 +270,10 @@ html.dark .profile-links img {
     .timeline-entry {
         grid-template-columns: 1fr;
         gap: 0.25rem;
+    }
+
+    .cve-group time {
+        text-align: left;
     }
 }
 
