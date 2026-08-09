@@ -43,7 +43,7 @@ const navLinks = locale === 'zh'
             </div>
         )
     }
-    <div class="absolute top-4 right-0 z-10 flex items-center gap-3 md:top-8">
+    <div class="nav-actions absolute top-4 right-0 z-10 flex items-center gap-3 md:top-8">
         <LanguageSwitch locale={locale} alternateUrl={alternateUrl} />
         <ThemeToggle />
     </div>
@@ -51,6 +51,12 @@ const navLinks = locale === 'zh'
 
 <style>
     @reference "tailwindcss";
+
+    @media (min-width: 768px) {
+        .nav-actions {
+            transform: translateY(1px);
+        }
+    }
 
     @media (max-width: 767px) {
         .menu {
