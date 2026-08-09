@@ -79,7 +79,7 @@ const cves = [
                                     <span class:list={['cve-item', { 'cve-item--assisted': item === '20521' }]}>
                                         <span>{item}</span>
                                         {item === '20521' && (
-                                            <span class="ai-assisted-label">AI-assisted</span>
+                                            <sup class="ai-assisted-marker" aria-label="AI-assisted discovery">1</sup>
                                         )}
                                     </span>
                                 </>
@@ -89,10 +89,10 @@ const cves = [
                 ))}
             </div>
             <p class="ai-assisted-note">
-                <span class="ai-assisted-label">AI-assisted</span>
+                <sup>1</sup>
                 {zh
-                    ? '表示 AI 辅助了部分漏洞发现过程；验证与报告由我完成。'
-                    : 'indicates that AI supported parts of the discovery process; validation and reporting were completed by me.'}
+                    ? 'AI 辅助发现：AI 辅助了部分漏洞发现过程；验证与报告由我完成。'
+                    : 'AI-assisted discovery: AI supported parts of the discovery process; validation and reporting were completed by me.'}
             </p>
         </section>
 
