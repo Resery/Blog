@@ -177,6 +177,7 @@ html.dark .profile-links img {
 .ai-assisted-label {
     display: inline-flex;
     align-items: center;
+    transform: translateY(-0.1em);
     border: 1px solid currentColor;
     border-radius: 999px;
     padding: 0.05rem 0.36rem;
