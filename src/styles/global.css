@@ -117,7 +117,7 @@ html.dark .profile-links img {
 }
 
 .section-lead {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.7rem;
     font-family: var(--font-serif);
     font-style: italic;
     opacity: 0.72;
@@ -164,28 +164,30 @@ html.dark .profile-links img {
 
 .cve-item--assisted {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
+    gap: 0.38rem;
     white-space: nowrap;
+    vertical-align: -0.08em;
 }
 
-.ai-assisted-marker {
-    margin-left: 0.12rem;
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    font-size: 0.55rem;
+.ai-assisted-label {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 0.05rem 0.36rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.56rem;
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
 }
 
 .ai-assisted-note {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
     font-size: 0.72rem;
     line-height: 1.65;
     opacity: 0.62;
-}
-
-.ai-assisted-note sup {
-    margin-right: 0.28rem;
-    font-weight: 600;
 }
 
 .post-list {

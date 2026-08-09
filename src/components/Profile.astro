@@ -3,9 +3,9 @@ type Props = { locale?: 'en' | 'zh' };
 const { locale = 'en' } = Astro.props;
 const zh = locale === 'zh';
 const cves = [
-    { year: '2026', items: ['CVE-2026-20424', '20425', '20426', '20427', '20428', '20429', '20447', '20448', '20521'] },
-    { year: '2024', items: ['CVE-2024-20013', '20083', '20088', '20090', '20091', '20092', '20093', '20095', '20096', '20097', '20107', '20116', '20136', '20105'] },
-    { year: '2023', items: ['CVE-2023-20634', '20635', '20708', '20711', '20755', '20757', '20758', '20759', '20780', '20823', '20833', '32818', '32819', '32821', '32872', '32873', '32875', '32876'] }
+    { year: '2026', items: ['20424', '20425', '20426', '20427', '20428', '20429', '20447', '20448', '20521'] },
+    { year: '2024', items: ['20013', '20083', '20088', '20090', '20091', '20092', '20093', '20095', '20096', '20097', '20107', '20116', '20136', '20105'] },
+    { year: '2023', items: ['20634', '20635', '20708', '20711', '20755', '20757', '20758', '20759', '20780', '20823', '20833', '32818', '32819', '32821', '32872', '32873', '32875', '32876'] }
 ];
 ---
 
@@ -79,7 +79,7 @@ const cves = [
                                     <span class:list={['cve-item', { 'cve-item--assisted': item === '20521' }]}>
                                         <span>{item}</span>
                                         {item === '20521' && (
-                                            <sup class="ai-assisted-marker" aria-label="AI-assisted discovery">1</sup>
+                                            <span class="ai-assisted-label">AI-assisted</span>
                                         )}
                                     </span>
                                 </>
@@ -89,7 +89,6 @@ const cves = [
                 ))}
             </div>
             <p class="ai-assisted-note">
-                <sup>1</sup>
                 {zh
                     ? 'AI 辅助发现：AI 辅助了部分漏洞发现过程；验证与报告由我完成。'
                     : 'AI-assisted discovery: AI supported parts of the discovery process; validation and reporting were completed by me.'}
