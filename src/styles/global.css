@@ -162,6 +162,12 @@ html.dark .profile-links img {
     opacity: 0.68;
 }
 
+.cve-item--assisted {
+    display: inline-flex;
+    align-items: baseline;
+    white-space: nowrap;
+}
+
 .ai-assisted-label {
     display: inline-block;
     margin-left: 0.45rem;

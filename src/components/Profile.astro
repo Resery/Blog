@@ -76,10 +76,12 @@ const cves = [
                             {group.items.map((item, index) => (
                                 <>
                                     {index > 0 && <span aria-hidden="true"> · </span>}
-                                    <span>{item}</span>
-                                    {item === '20521' && (
-                                        <span class="ai-assisted-label">AI-assisted</span>
-                                    )}
+                                    <span class:list={['cve-item', { 'cve-item--assisted': item === '20521' }]}>
+                                        <span>{item}</span>
+                                        {item === '20521' && (
+                                            <span class="ai-assisted-label">AI-assisted</span>
+                                        )}
+                                    </span>
                                 </>
                             ))}
                         </p>
