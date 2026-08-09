@@ -162,6 +162,33 @@ html.dark .profile-links img {
     opacity: 0.68;
 }
 
+.ai-assisted-label {
+    display: inline-block;
+    margin-left: 0.45rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 0.08rem 0.38rem;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.56rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+    vertical-align: 0.1em;
+    white-space: nowrap;
+}
+
+.ai-assisted-note {
+    margin-top: 1.25rem;
+    font-size: 0.72rem;
+    line-height: 1.65;
+    opacity: 0.62;
+}
+
+.ai-assisted-note .ai-assisted-label {
+    margin-right: 0.5rem;
+    margin-left: 0;
+}
+
 .post-list {
     display: grid;
     margin-bottom: 2rem;

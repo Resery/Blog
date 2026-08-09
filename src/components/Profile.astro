@@ -3,7 +3,7 @@ type Props = { locale?: 'en' | 'zh' };
 const { locale = 'en' } = Astro.props;
 const zh = locale === 'zh';
 const cves = [
-    { year: '2026', items: ['CVE-2026-20424', '20425', '20426', '20427', '20428', '20429', '20447', '20448', '20521 (AI)'] },
+    { year: '2026', items: ['CVE-2026-20424', '20425', '20426', '20427', '20428', '20429', '20447', '20448', '20521'] },
     { year: '2024', items: ['CVE-2024-20013', '20083', '20088', '20090', '20091', '20092', '20093', '20095', '20096', '20097', '20107', '20116', '20136', '20105'] },
     { year: '2023', items: ['CVE-2023-20634', '20635', '20708', '20711', '20755', '20757', '20758', '20759', '20780', '20823', '20833', '32818', '32819', '32821', '32872', '32873', '32875', '32876'] }
 ];
@@ -72,10 +72,26 @@ const cves = [
                 {cves.map((group) => (
                     <div class="timeline-entry cve-group">
                         <time>{group.year}</time>
-                        <p>{group.items.join(' · ')}</p>
+                        <p>
+                            {group.items.map((item, index) => (
+                                <>
+                                    {index > 0 && <span aria-hidden="true"> · </span>}
+                                    <span>{item}</span>
+                                    {item === '20521' && (
+                                        <span class="ai-assisted-label">AI-assisted</span>
+                                    )}
+                                </>
+                            ))}
+                        </p>
                     </div>
                 ))}
             </div>
+            <p class="ai-assisted-note">
+                <span class="ai-assisted-label">AI-assisted</span>
+                {zh
+                    ? '表示 AI 辅助了部分漏洞发现过程；验证与报告由我完成。'
+                    : 'indicates that AI supported parts of the discovery process; validation and reporting were completed by me.'}
+            </p>
         </section>
 
         <slot />
